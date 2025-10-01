@@ -1,4 +1,4 @@
-StudentID,Name,Attendance,Assignments,Tutorials,Volunteering,MOOCs,ExtraCurricularActivities,PerformanceLevel
+StudentID,Name,Attendance,Assignments,Tutorials,Volunteering,MOOCs,EventsParticipation,PerformanceLevel
 S0001,Layla Kelly,98,7,0,4,0,2,Medium
 S0002,Amelia Phillips,89,7,3,2,2,5,High
 S0003,Samuel Stewart,50,5,4,3,3,0,Low
