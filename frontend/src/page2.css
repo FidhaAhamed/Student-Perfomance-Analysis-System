@@ -1,0 +1,13 @@
+/* Styles extracted from page2.jsx */
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Bebas+Neue&display=swap');
+:root {
+  --font-primary: 'Audiowide', cursive;
+  --font-secondary: 'Bebas Neue', sans-serif;
+}
+body {
+  font-family: var(--font-secondary);
+}
+
+/* Helper classes that were used inline in JSX */
+.font-primary { font-family: var(--font-primary); }
+.font-secondary { font-family: var(--font-secondary); }
