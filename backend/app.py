@@ -1,7 +1,13 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
 import pandas as pd
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
+
+@app.route("/")
+def home():
+    return "Welcome to the Student Performance Analysis API! Try /summary, /at-risk, /students, or /rules"
 
 @app.route("/summary")
 def summary():
@@ -14,6 +20,11 @@ def at_risk():
     df = pd.read_csv('data/student_performance_with_predictions.csv')
     low_perf = df[df['Predicted_Performance'] == 'Low']
     return low_perf.to_json(orient='records')
+
+@app.route("/students")
+def students():
+    df = pd.read_csv('data/student_performance_with_predictions.csv')
+    return df.to_json(orient='records')
 
 @app.route("/rules")
 def rules():
