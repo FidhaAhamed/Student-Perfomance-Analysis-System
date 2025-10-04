@@ -134,21 +134,35 @@ const UploadCSVApp = () => {
         }
     };
 
-    const handleUploadSubmit = () => {
-        if (selectedFile) {
-            setUploadStatus('Uploading...');
-            // --- Simulate API call to backend here ---
-            console.log("Submitting file:", selectedFile.name);
-            
-            // Simulation logic
-            setTimeout(() => {
-                setUploadStatus(`Success! "${selectedFile.name}" processed by backend.`);
-                // In a real app, you'd navigate to the Dashboard/Report page here.
-            }, 2000);
-        } else {
-            setUploadStatus('Please select a file first.');
+    const handleUploadSubmit = async () => {
+    if (selectedFile) {
+        setUploadStatus('Uploading...');
+        try {
+            const formData = new FormData();
+            formData.append('file', selectedFile);
+
+            const res = await fetch('http://localhost:5000/upload', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await res.json();
+            if (res.ok && data.success) {
+                setUploadStatus(`Success! "${selectedFile.name}" processed.`);
+                // Redirect to dashboard after short delay
+                setTimeout(() => {
+                    window.location.href = "#/";
+                }, 1000);
+            } else {
+                setUploadStatus(`Error: ${data.message || 'Failed to process file.'}`);
+            }
+        } catch (err) {
+            setUploadStatus(`Error: ${err.message}`);
         }
-    };
+    } else {
+        setUploadStatus('Please select a file first.');
+    }
+};
 
     return (
         <div className="min-h-screen bg-gray-50 font-main text-gray-900 p-4 sm:p-8">

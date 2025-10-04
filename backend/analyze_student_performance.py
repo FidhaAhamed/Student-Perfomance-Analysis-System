@@ -58,3 +58,4 @@ df.to_csv('data/student_performance_with_predictions.csv', index=False)
 rules.to_csv('data/performance_association_rules.csv', index=False)
 
 print("\nResults saved to 'data/student_performance_with_predictions.csv' and 'data/performance_association_rules.csv'")
+print("ML pipeline completed!")
